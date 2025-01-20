@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "234358892114",
+    "project_id": "location-based-social-ap-40e23",
+    "storage_bucket": "location-based-social-ap-40e23.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234358892114:android:92c1aff5be07fa0c93218b",
+        "android_client_info": {
+          "package_name": "com.example.geolocation_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3Yx-309Vj6zc9LgpzmZ8ZzTkNVda-JJw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

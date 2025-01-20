@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:geolocation_app/screens/map_screen.dart';
+import 'package:geolocation_app/pages/login_screen.dart';
+import 'package:geolocation_app/services/auth_service.dart';
+import 'package:geolocation_app/services/navigation_service.dart';
 
-import '../screens/home_screen.dart';
-import '../screens/bottom_navigation_bar.dart';
+import 'bottom_navigation_bar.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -14,6 +15,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+
+
   @override
   void initState() {
     super.initState();
@@ -23,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     // Delay of 5 seconds before navigating to the next screen
     Future.delayed(const Duration(seconds: 5), () {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => NavScreen())
+          MaterialPageRoute(builder: (_) => LoginPage())
       );
     });
   }

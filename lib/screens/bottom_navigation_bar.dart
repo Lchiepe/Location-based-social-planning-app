@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'chat_screen.dart';
 import 'map_screen.dart';
 import 'home_screen.dart';
 
@@ -13,7 +13,7 @@ class _NavScreenState extends State<NavScreen> {
 
   final List<Widget> _screens = [
     HomeScreen(key: PageStorageKey('homeScreen')),
-    Scaffold(),
+    ChatScreen(key: PageStorageKey('chatScreen')),
     MapPage(key: PageStorageKey('myMaps')),
     Scaffold(),
     Scaffold(),
@@ -22,7 +22,7 @@ class _NavScreenState extends State<NavScreen> {
 
   final Map<String, IconData> _Icon =const{
     'Home' : Icons.home,
-    'Friends': Icons.contactless,
+    'Chat': Icons.contactless,
     'MyMap' : Icons.map,
     'Games(coming soon)' : Icons.games,
   };

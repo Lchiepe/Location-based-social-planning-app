@@ -3,10 +3,12 @@ import 'dart:math';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocation_app/services/auth_service.dart';
+import 'package:geolocation_app/services/navigation_service.dart';
+import 'package:get_it/get_it.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../model/news_articles.dart';
 import '../pages/data.dart';
-import '../pages/news_api.dart';
 import '../widgets/content_header.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/events.dart';
@@ -22,7 +24,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final GetIt _getIt = GetIt.instance;
+
   late ScrollController _scrollController;
+  late AuthService _authService;
+  late NavigationService _navigationService;
+
   double _scrollOffset = 0.0;
 
   final List<String> skylineImages = [
@@ -40,6 +47,9 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    _authService = _getIt.get<AuthService>();
+    _navigationService = _getIt.get<NavigationService>();
+
     _getNews();
     _scrollController = ScrollController()
       ..addListener(() {
@@ -68,7 +78,6 @@ class _HomeScreenState extends State<HomeScreen> {
     try {
       final response = await dio.get(
           'https://newsapi.org/v2/everything?q=ontario&from=2025-01-05&to=2025-01-05&sortBy=popularity&language=en&apiKey=3002bfec8eb64104a41f8dec6a219373');
-      print(response);
 
       final articlesJson = response.data["articles"] as List;
       setState(() {
@@ -99,6 +108,44 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
     return Scaffold(
+
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.deepPurpleAccent,
+                ),
+                child: Text(
+                  'Navigation Drawer',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: Icon(Icons.home),
+                title: Text('Home'),
+                onTap: () async {
+
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.logout),
+                title: Text('logout'),
+                onTap: () async {
+                  bool result = await _authService.logout();
+                  if (result){
+                    _navigationService.pushReplacementNamed("/login");
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
+
         extendBodyBehindAppBar: true,
          appBar: PreferredSize(
           preferredSize: Size(screenSize.width, 50.0),

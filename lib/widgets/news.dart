@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:geolocation_app/model/news_articles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../model/content_model.dart';
 import '../pages/news_api.dart';
 
 class News extends StatelessWidget {

@@ -1,9 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 import '../model/map_style.dart';
+import '../model/user_profile.dart';
+import '../services/auth_service.dart';
+import '../services/database_service.dart';
+import '../services/storage_service.dart';
 
 
 
@@ -17,6 +22,11 @@ class MapPage extends StatefulWidget {
 class _MapPagesState extends State<MapPage> {
   final Completer<GoogleMapController> _controller = Completer();
   final Location location = Location();
+  final GetIt _getIt = GetIt.instance;
+
+  late AuthService _authService;
+  late StorageService _storageService;
+  late DatabaseService _databaseService;
 
 
   LocationData? currentLocation; //to store location
@@ -24,17 +34,16 @@ class _MapPagesState extends State<MapPage> {
   BitmapDescriptor? friendMarker;
 
 
-  final List<Map<String, dynamic>> friends = [
-    {'id': 'friend1', 'name': 'Alice', 'latitude': 44.2330, 'longitude': -76.4942}, // Example coordinates
-    {'id': 'friend2', 'name': 'Bob', 'latitude': 44.2398, 'longitude': -76.4961},
-  ];
-
   @override
   void initState() {
     super.initState();
     getLocationPermission();
     loadCustomMarker();
     loadFriendMarker();
+    _authService = _getIt.get<AuthService>();
+    _storageService = _getIt.get<StorageService>();
+    _databaseService = _getIt.get<DatabaseService>();
+
   }
 
   // Load custom markers for user and friends
@@ -90,30 +99,47 @@ class _MapPagesState extends State<MapPage> {
     location.onLocationChanged.listen((LocationData newLocation) {
       setState(() {
         currentLocation = newLocation;
+
+
+
       });
+
+      if (currentLocation != null){
+        _databaseService.addLocationProfile(
+          uid : _authService.user!.uid,
+          locationProfile: LocationProfile(
+            latitude: currentLocation!.latitude!,
+            longitude: currentLocation!.longitude!,
+          ),
+        );
+      }
+
+
     });
+
+
   }
 
 
   // Create markers for friends
-  Set<Marker> _createFriendMarkers() {
+  //Set<Marker> _createFriendMarkers() {
     // Check if friendMarker is null before creating friend markers
-    if (friendMarker == null) {
-      return {}; // Return an empty set if friendMarker is not initialized yet
-    }
+    //if (friendMarker == null) {
+      //return {}; // Return an empty set if friendMarker is not initialized yet
+    //}
 
-    return friends.map((friend) {
-      return Marker(
-        markerId: MarkerId(friend['id']),
-        position: LatLng(friend['latitude'], friend['longitude']),
-        icon: friendMarker!,
-        infoWindow: InfoWindow(
-          title: friend['name'],
-          snippet: 'Friend\'s location',
-        ),
-      );
-    }).toSet();
-  }
+    //return friends.map((friend) {
+      //return Marker(
+        //markerId: MarkerId(friend['id']),
+        //position: LatLng(friend['latitude'], friend['longitude']),
+        //icon: friendMarker!,
+        //infoWindow: InfoWindow(
+          //title: friend['name'],
+          //snippet: 'Friend\'s location',
+        //),
+      //);
+    //}).toSet();
+  //}
 
 
 
@@ -143,7 +169,7 @@ class _MapPagesState extends State<MapPage> {
             ),
           ),
 
-          ..._createFriendMarkers(),
+          //..._createFriendMarkers(),
         },
 
 

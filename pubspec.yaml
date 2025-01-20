@@ -42,7 +42,19 @@ dependencies:
   flutter_bloc: ^8.1.6
   dio: ^5.4.0
   url_launcher: ^6.2.3
-  chatview: ^2.4.0
+  firebase_core: ^3.10.0
+  firebase_auth: ^5.4.0
+  cloud_firestore: ^5.6.1
+  firebase_storage: ^12.4.0
+  dash_chat_2: ^0.0.21
+  firebase_analytics: ^11.4.0
+  delightful_toast: ^1.1.0
+  google_fonts: ^6.2.1
+  get_it: ^8.0.3
+  image_picker: ^1.1.2
+  path: ^1.9.0
+  cached_network_image: ^3.2.0
+
 
 dev_dependencies:
   flutter_test:
