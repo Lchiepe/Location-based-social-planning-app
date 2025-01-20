@@ -39,7 +39,7 @@ User request
 Search for and befriend users in the database to enable social capabilites. Soon to be implemented with a messaging program allowing users to share multi media and communicate.
 improved map.
 
-Improved map feature to displays more location names and land marks. Soon to allow user interation to pin locations, display its details and share the pin t=with users friend group.
+Improved map feature to displays more location names and land marks. Soon to allow user interation to pin locations, display its details and share with users friend group.
 
 Create shared itineraries with friends and track contributions in real-time.
 Advanced Privacy Controls
