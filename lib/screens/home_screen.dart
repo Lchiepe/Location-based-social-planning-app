@@ -76,8 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _getNews() async {
     try {
-      final response = await dio.get(
-          'https://newsapi.org/v2/everything?q=ontario&from=2025-01-05&to=2025-01-05&sortBy=popularity&language=en&apiKey=3002bfec8eb64104a41f8dec6a219373');
+      final response = await dio.get();
 
       final articlesJson = response.data["articles"] as List;
       setState(() {
