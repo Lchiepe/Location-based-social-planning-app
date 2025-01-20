@@ -44,7 +44,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBRpGA3l-WXFymI2bSTYH7iSlKKE0Mdo_0',
+    apiKey: '',
     appId: '1:234358892114:web:98ed4b44edc2436e93218b',
     messagingSenderId: '234358892114',
     projectId: 'location-based-social-ap-40e23',
@@ -54,7 +54,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyC3Yx-309Vj6zc9LgpzmZ8ZzTkNVda-JJw',
+    apiKey: '',
     appId: '1:234358892114:android:92c1aff5be07fa0c93218b',
     messagingSenderId: '234358892114',
     projectId: 'location-based-social-ap-40e23',
@@ -62,7 +62,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyCZpbHnyePvHahzkD4aRTjToCMLMRci55w',
+    apiKey: '',
     appId: '1:234358892114:ios:aed7cbb28e90568393218b',
     messagingSenderId: '234358892114',
     projectId: 'location-based-social-ap-40e23',
@@ -71,7 +71,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyBRpGA3l-WXFymI2bSTYH7iSlKKE0Mdo_0',
+    apiKey: '',
     appId: '1:234358892114:web:bde2ac06937f989193218b',
     messagingSenderId: '234358892114',
     projectId: 'location-based-social-ap-40e23',
